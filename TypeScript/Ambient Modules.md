@@ -8,7 +8,7 @@ Ambient declaration 파일은 모듈의 타입을 설명하지만 구현 내용�
 
 Ambient declaration 파일들은 transpile이 되지 않고, 그래서 그것들은 자바스크립트로 변환되지 않는다. 타입 안전성과 IntelliSense를 위해서만 사용된다. `d.ts` 파일 형식을 따른다.
 
-타입스크립트 생태계는 `DefinitelyTyped`를 통해 사용할 수 있는 수천개의 ambient declarations 파일들을 포함하고 있다. DefinitelyTyped는 타입스크립트 커뮤니티에서 기여하고 유지하는 선언 파일들이 포함된 저장소이다.``
+타입스크립트 생태계는 `DefinitelyTyped`를 통해 사용할 수 있는 수천개의 ambient declarations 파일들을 포함하고 있다. DefinitelyTyped는 타입스크립트 커뮤니티에서 기여하고 유지하는 선언 파일들이 포함된 저장소이다.
 
 당신의 프로젝트 안에서 아래와 같은 명령어를 입력한다면:
 
