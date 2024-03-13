@@ -3,6 +3,7 @@
 `useLayoutEffect`는 브라우저가 화면을 다시 그리기 전에 실행되는 `useEffect`입니다. 즉, `레이아웃(layout) 단계`가 지나 동기적으로 `useLayoutEffect`가 실행된 후 `페인트(paint) 단계`를 수행하게 됩니다.
 
 리액트 훅 흐름 다이어그램
+
 ![리액트 훅 흐름 다이어그램](./refFiles/react_hook_flow_diagram.png)
 
 ## 활용
