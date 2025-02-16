@@ -104,9 +104,9 @@ export function useOverlay({ exitOnUnmount = true }: Options = {}) {
 useEffect의 클린업 함수에 unmount가 호출되도록 구현, exitOnUnmount를 false로 줄 경우 unmount가 호출되지 않아 해당 오버레이는 호출한 컴포넌트가 언마운트가 되어도 언마운트 되지 않는다.
 
 ### 2. OverlayProvider
-4. overlayById 상태 -> 렌더링 관리(마운트, 언마운트)
-5. useOverlay 훅이 mount, unmount를 사용할 수 있도록 함
-6. overlayById 키 값에 따라 overlay를 렌더링
+1. overlayById 상태 -> 렌더링 관리(마운트, 언마운트)
+2. useOverlay 훅이 mount, unmount를 사용할 수 있도록 함
+3. overlayById 키 값에 따라 overlay를 렌더링
 ```ts
 const [overlayById, setOverlayById] = useState<Map<string, ReactNode>>(new Map());
 const mount = useCallback((id: string, element: ReactNode) => {
@@ -117,14 +117,16 @@ const mount = useCallback((id: string, element: ReactNode) => {
 }, []);
 ```
 overlayById 상태를 선언, 여러개의 오버레이를 띄울 수 있도록 Map 객체를 사용
-### 왜 Map을 사용했는지? (객체도 있는데)
-7. 객체는 순서를 보장하지 않는다. Map은 순서 보장이 된다. Overlay가 나중에 렌더링 될수록 위쪽에 떠야한다.(쌓임 맥락에 따라 나중에 추가된 Overlay가 더 위로 보여진다.)
-8. 
-##### new Map(oldMap)을 호출하면 어떻게 동작하는가?
+##### 왜 Map을 사용했는지? (객체도 있는데)
+1. 객체는 순서를 보장하지 않는다. Map은 순서 보장이 된다. Overlay가 나중에 렌더링 될수록 위쪽에 떠야한다.(쌓임 맥락에 따라 나중에 추가된 Overlay가 더 위로 보여진다.)
+2. useOverlay 특성상 값 변경이 잦아 비교적 효율적으로 값 변경이 되는 Map을 사용
+##### new Map(oldMap)을 호출하면 어떻게 동작하는가? 왜 이렇게 사용했는지?
 기존 Map의 모든 데이터를 새로운 Map 인스턴스로 복사한다.
-##### 왜 이렇게 사용했는지?
 React의 useState에서 Map을 직접 수정하면 상태 변경이 감지되지 않는다.(리렌더링이 되지 않음)
 
 ### 3. OverlayController
-9. isOpenOverlay를 별도로 관리(직접적인 렌더링에 관여하지 않음) -> 오버레이의 애니메이션을 위한 상태값
-10. OverlayElement를 받아 isOpen, close, exit를 주입
+1. isOpenOverlay를 별도로 관리(직접적인 렌더링에 관여하지 않음) -> 오버레이의 애니메이션을 위한 상태값
+2. OverlayElement를 받아 isOpen, close, exit를 주입
+
+## 나의 생각
+isOpen과 close는 렌더링에 직접 관여하지 않고 애니메이션을 위한 값으로 생각된다. open 함수로 컴포넌트를 넣었을 때 elementId를 증가시켜 아이디로 사용하고 이를 OverlayProvider에서 렌더링하고 있기 때문
