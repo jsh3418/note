@@ -11,37 +11,17 @@
             "id": "0c398eedc8ec076f",
             "type": "leaf",
             "state": {
-<<<<<<< HEAD
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "새 탭"
-=======
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "JavaScript/Map.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
-            }
-          },
-          {
-            "id": "5f77f3f8c0536f5f",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.7.7"
-              },
-              "icon": "lucide-file",
-              "title": "Release Notes 1.7.7"
->>>>>>> 82799f517eafee0a0a758ee05d1a4f86c5a9d043
+              "title": "Map"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -60,12 +40,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-<<<<<<< HEAD
                 "sortOrder": "alphabetical",
                 "autoReveal": false
-=======
-                "sortOrder": "alphabetical"
->>>>>>> 82799f517eafee0a0a758ee05d1a4f86c5a9d043
               },
               "icon": "lucide-folder-closed",
               "title": "파일 탐색기"
@@ -85,11 +61,7 @@
                 "sortOrder": "alphabetical"
               },
               "icon": "lucide-search",
-<<<<<<< HEAD
               "title": "Search"
-=======
-              "title": "검색"
->>>>>>> 82799f517eafee0a0a758ee05d1a4f86c5a9d043
             }
           },
           {
@@ -131,11 +103,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-<<<<<<< HEAD
               "title": "Backlinks"
-=======
-              "title": "백링크"
->>>>>>> 82799f517eafee0a0a758ee05d1a4f86c5a9d043
             }
           },
           {
@@ -148,11 +116,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-<<<<<<< HEAD
               "title": "Outgoing links"
-=======
-              "title": "나가는 링크"
->>>>>>> 82799f517eafee0a0a758ee05d1a4f86c5a9d043
             }
           },
           {
@@ -162,13 +126,9 @@
               "type": "tag",
               "state": {
                 "sortOrder": "frequency",
-<<<<<<< HEAD
                 "useHierarchy": true,
                 "showSearch": false,
                 "searchQuery": ""
-=======
-                "useHierarchy": true
->>>>>>> 82799f517eafee0a0a758ee05d1a4f86c5a9d043
               },
               "icon": "lucide-tags",
               "title": "Tags"
@@ -179,7 +139,6 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-<<<<<<< HEAD
               "state": {
                 "followCursor": false,
                 "showSearch": false,
@@ -197,11 +156,6 @@
               "state": {},
               "icon": "git-pull-request",
               "title": "Source Control"
-=======
-              "state": {},
-              "icon": "lucide-list",
-              "title": "개요"
->>>>>>> 82799f517eafee0a0a758ee05d1a4f86c5a9d043
             }
           }
         ],
@@ -209,7 +163,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -222,14 +177,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-<<<<<<< HEAD
   "active": "0c398eedc8ec076f",
-=======
-  "active": "5f77f3f8c0536f5f",
->>>>>>> 82799f517eafee0a0a758ee05d1a4f86c5a9d043
   "lastOpenFiles": [
     "Open Source/slash/useOverlay.md",
-    "JavaScript/Map/Map.md",
+    "JavaScript/Map.md",
     "Open Source/slash",
     "Open Source",
     "JavaScript/Map/Map의 탄생 배경.md",
