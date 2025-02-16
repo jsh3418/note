@@ -1,4 +1,6 @@
+https://github.dev/toss/slash
 https://www.slash.page/ko/libraries/react/use-overlay/src/useOverlay.i18n
+
 useOverlay는 Overlay를 선언적으로 다루기 위한 유틸리티입니다.
 
 >- Overlay란? BottomSheet과 Dialog처럼 별도의 UI 레이어에 띄우는 컴포넌트
@@ -15,12 +17,11 @@ Overlay를 Map으로 관리하여 여러 개의 Overlay를 만들고 관리할 �
 
 Promise를 반환하여 콜백 함수의 로직을 기다리게 한 뒤 사용자의 행동에 따라 조건부로 로직을 수행할 수 있다.
 ```ts
-// _app.tsx
 import { OverlayProvider } from '@toss/use-overlay';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <OverlayProvider>
+    <OverlayProvider> // OverlayProvider를 최상위 컴포넌트에 적용
       <Component {...pageProps} />
     </OverlayProvider>
   );
@@ -48,7 +49,7 @@ const openFooConfirmDialog = () => {
   });
 };
 
-await openFooConfirmDialog(); // 사용자가 긍정적인 ㅎ
+await openFooConfirmDialog(); // 사용자가 Dialog을 닫았을 때 false를 리턴, 확인을 눌렀을 때 true를 반환하여 그 뒤로 조건부 로직을 구현할 수 있다.
 
 // ConfirmDialog의 confirmButton을 누르거나 onClose가 호출된 후
 console.log('dialog closed');
@@ -56,19 +57,31 @@ console.log('dialog closed');
 
 ## 사용법 살펴보기
 ### isOpen
-open을 호출했을 때 isOpen이 true로 바뀐다. 이 값을 이용해서 Overlay에 띄울 컴포넌트의 open 상태를 관리한다.
+>open()을 호출했을 때 isOpen이 true로 바뀝니다. 이 값을 이용해서 Overlay에 띄울 컴포넌트의 open 상태를 관리합니다.
 ### close
-이 함수를 호출하면 isOpen이 false로 바뀐다. Overlay가 unmount된다.
+>이 함수가 호출되면 isOpen이 false로 바뀝니다. 주로 Overlay로 띄울 컴포넌트의 onClose 함수에 이 함수를 주입합니다.
 ### exit
-이 함수를 호출하면 해당 Overlay가 unmount 된다.
+>이 함수가 호출되면 해당 Overlay가 unmount됩니다.
+>close와 exit이 분리되어 있는 이유는 Overlay를 닫으면서 fade-out 애니메이션을 주고 싶을 때 close와 동시에 unmount시켜버리면 애니메이션이 먹히기 때문입니다.
 ### options
-
-## close와 exit
-close와 exit이 분리되어 있는 이유는 Overlay를 닫으면서 fade-out 애니메이션을 주고 싶을 때 close와 동시에 unmount 시켜버리면 애니메이션이 먹히기 때문이라고 설명되어 있다.
-
+>useOverlay를 호출한 컴포넌트가 unmount 되면 overlay도 같이 unmount(=exit) 됩니다.  
+exitOnUnmount의 값을 false로 설정하였다면 useOverlay를 호출한 컴포넌트가 unmount 되어도 overlay가 같이 unmount 되지 않습니다.  
+따라서 원하는 타이밍에 overlay의 exit 함수를 직접 실행하여 overlay를 unmount 시킬 수 있습니다. exit 함수를 실행시키지 않는다면  
+등록된 overlay가 메모리 상에 계속 남아있게 됩니다. exitOnUnmount의 값을 false로 설정하였다면 반드시 exit 함수를 실행시켜주세요.  
+close와 exit이 분리되어 있는 이유는 Overlay를 닫으면서 fade-out 애니메이션을 주고 싶을 때 close와 동시에 unmount시켜버리면 애니메이션이 먹히기 때문입니다.  
+default: true
 
 ## 내부 구현체 살펴보기
-### 1. OverlayProvider (toss/slash/packages/react/use-overlay/src/OverlayProvider.tsx)
+toss/slash/packages/react/use-overlay
+### 1. useOverlay
+```ts
+let elementId = 1;
+```
+elementId: Overlay를 관리하는 Map에 key로 사용된다. 오버레이가 새로 생길 때마다 elementId의 값이 증가 된다.
+
+
+
+### 2. OverlayProvider
 - mount, unmount를 Context로 프로바이더 내부 컴포넌트에서 사용할 수 있도록 구현
 ```ts
 const [overlayById, setOverlayById] = useState<Map<string, ReactNode>>(new Map());
@@ -87,3 +100,5 @@ overlayById 상태를 선언, 여러개의 오버레이를 띄울 수 있도록 
 기존 Map의 모든 데이터를 새로운 Map 인스턴스로 복사한다.
 ##### 왜 이렇게 사용했는지?
 React의 useState에서 Map을 직접 수정하면 상태 변경이 감지되지 않는다.(리렌더링이 되지 않음)
+
+### 3. OverlayController
