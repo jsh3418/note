@@ -76,7 +76,7 @@ toss/slash/packages/react/use-overlay
 ### 1. useOverlay
 1. 오버레이의 id 생성
 2. exitOnUnmount 옵션을 통해 overlay를 호출한 컴포넌트가 언마운트 될 때 해당 overlay가 같이 언마운트 될 것인지를 선택할 수 있게 함
-3. 
+3. 훅 사용처에 open, close, exit을 노출
 ```ts
 let elementId = 1;
 ```
@@ -101,12 +101,12 @@ export function useOverlay({ exitOnUnmount = true }: Options = {}) {
 	...
 ```
 #### exitOnUnmount
-
+useEffect의 클린업 함수에 unmount가 호출되도록 구현, exitOnUnmount를 false로 줄 경우 unmount가 호출되지 않아 해당 오버레이는 호출한 컴포넌트가 언마운트가 되어도 언마운트 되지 않는다.
 
 ### 2. OverlayProvider
-3. overlayById 상태 -> 렌더링 관리(마운트, 언마운트)
-4. useOverlay 훅이 mount, unmount를 사용할 수 있도록 함
-5. overlayById 키 값에 따라 overlay를 렌더링
+4. overlayById 상태 -> 렌더링 관리(마운트, 언마운트)
+5. useOverlay 훅이 mount, unmount를 사용할 수 있도록 함
+6. overlayById 키 값에 따라 overlay를 렌더링
 ```ts
 const [overlayById, setOverlayById] = useState<Map<string, ReactNode>>(new Map());
 const mount = useCallback((id: string, element: ReactNode) => {
@@ -118,13 +118,13 @@ const mount = useCallback((id: string, element: ReactNode) => {
 ```
 overlayById 상태를 선언, 여러개의 오버레이를 띄울 수 있도록 Map 객체를 사용
 ### 왜 Map을 사용했는지? (객체도 있는데)
-6. 객체는 순서를 보장하지 않는다. Map은 순서 보장이 된다. Overlay가 나중에 렌더링 될수록 위쪽에 떠야한다.(쌓임 맥락에 따라 나중에 추가된 Overlay가 더 위로 보여진다.)
-7. 
+7. 객체는 순서를 보장하지 않는다. Map은 순서 보장이 된다. Overlay가 나중에 렌더링 될수록 위쪽에 떠야한다.(쌓임 맥락에 따라 나중에 추가된 Overlay가 더 위로 보여진다.)
+8. 
 ##### new Map(oldMap)을 호출하면 어떻게 동작하는가?
 기존 Map의 모든 데이터를 새로운 Map 인스턴스로 복사한다.
 ##### 왜 이렇게 사용했는지?
 React의 useState에서 Map을 직접 수정하면 상태 변경이 감지되지 않는다.(리렌더링이 되지 않음)
 
 ### 3. OverlayController
-8. isOpenOverlay를 별도로 관리(직접적인 렌더링에 관여하지 않음) -> 오버레이의 애니메이션을 위한 상태값
-9. OverlayElement를 받아 isOpen, close, exit를 주입
+9. isOpenOverlay를 별도로 관리(직접적인 렌더링에 관여하지 않음) -> 오버레이의 애니메이션을 위한 상태값
+10. OverlayElement를 받아 isOpen, close, exit를 주입
