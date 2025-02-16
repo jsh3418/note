@@ -1,17 +1,58 @@
 https://www.slash.page/ko/libraries/react/use-overlay/src/useOverlay.i18n
-useOverlay는 Overlay를 선언적으로 다루기 위한 유틸리티이다.
+useOverlay는 Overlay를 선언적으로 다루기 위한 유틸리티입니다.
 
->Overlay란? BottomSheet과 Dialog처럼 별도의 UI 레이어에 띄우는 컴포넌트
+>- Overlay란? BottomSheet과 Dialog처럼 별도의 UI 레이어에 띄우는 컴포넌트
 
->사용하기 위해선 `_app.tsx` 에 `<OverlayProvider />`를 추가해야 합니다.
+>- 사용하기 위해선 `_app.tsx` 에 `<OverlayProvider />`를 추가해야 합니다.
 
-내부에서 context를 사용하고 있기 때문
+내부에서 context를 사용하고 있기 때문에 추가해야 한다.
 
->useOverlay를 여러 번 호출해서 여러 개의 Overlay를 만들 수 있습니다.
+>- useOverlay를 여러 번 호출해서 여러 개의 Overlay를 만들 수 있습니다.
 
 Overlay를 Map으로 관리하여 여러 개의 Overlay를 만들고 관리할 수 있다.
 
->Promise와 함께 사용할 수 있습니다.
+>- Promise와 함께 사용할 수 있습니다.
+
+Promise를 반환하여 콜백 함수의 로직을 기다리게 한 뒤 사용자의 행동에 따라 조건부로 로직을 수행할 수 있다.
+```ts
+// _app.tsx
+import { OverlayProvider } from '@toss/use-overlay';
+
+export default function App({ Component, pageProps }: AppProps) {
+  return (
+    <OverlayProvider>
+      <Component {...pageProps} />
+    </OverlayProvider>
+  );
+}
+
+// Page.tsx
+import { useOverlay } from '@toss/use-overlay';
+
+const overlay = useOverlay();
+const openFooConfirmDialog = () => {
+  return new Promise<boolean>(resolve => {
+    overlay.open(({ isOpen, close }) => (
+      <FooConfirmDialog
+        open={isOpen}
+        onClose={() => {
+          resolve(false);
+          close();
+        }}
+        onConfirm={() => {
+          resolve(true);
+          close();
+        }}
+      />
+    ));
+  });
+};
+
+await openFooConfirmDialog(); // 사용자가 긍정적인 ㅎ
+
+// ConfirmDialog의 confirmButton을 누르거나 onClose가 호출된 후
+console.log('dialog closed');
+```
 
 ## 사용법 살펴보기
 ### isOpen
