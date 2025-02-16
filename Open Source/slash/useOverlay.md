@@ -18,8 +18,6 @@ close와 exit이 분리되어 있는 이유는 Overlay를 닫으면서 fade-out 
 ### 내부 구현체 살펴보기
 #### 1. OverlayProvider (toss/slash/packages/react/use-overlay/src/OverlayProvider.tsx)
 - mount, unmount를 Context로 프로바이더 내부 컴포넌트에서 사용할 수 있도록 구현
-- overlayById 상태를 선언, 여러개의 오버레이를 띄울 수 있도록 Map 객체를 사용
-
 ```ts
 const [overlayById, setOverlayById] = useState<Map<string, ReactNode>>(new Map());
 const mount = useCallback((id: string, element: ReactNode) => {

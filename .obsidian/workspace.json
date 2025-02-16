@@ -61,7 +61,7 @@
                 "sortOrder": "alphabetical"
               },
               "icon": "lucide-search",
-              "title": "Search"
+              "title": "검색"
             }
           },
           {
@@ -71,14 +71,15 @@
               "type": "bookmarks",
               "state": {},
               "icon": "lucide-bookmark",
-              "title": "Bookmarks"
+              "title": "북마크"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "a5c9cb55609030d2",
@@ -179,8 +180,8 @@
   },
   "active": "0c398eedc8ec076f",
   "lastOpenFiles": [
-    "JavaScript/Map.md",
     "Open Source/slash/useOverlay.md",
+    "JavaScript/Map.md",
     "Open Source/slash",
     "Open Source",
     "JavaScript/Map/Map의 탄생 배경.md",
