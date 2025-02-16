@@ -1,6 +1,17 @@
 https://www.slash.page/ko/libraries/react/use-overlay/src/useOverlay.i18n
 useOverlay는 Overlay를 선언적으로 다루기 위한 유틸리티이다.
-Overlay는 BottomSheet와 Dialog(모달)처럼 별도의 UI 레이어를 띄우는 컴포넌트를 말함.
+
+>Overlay란? BottomSheet과 Dialog처럼 별도의 UI 레이어에 띄우는 컴포넌트
+
+>사용하기 위해선 `_app.tsx` 에 `<OverlayProvider />`를 추가해야 합니다.
+
+내부에서 context를 사용하고 있기 때문
+
+>useOverlay를 여러 번 호출해서 여러 개의 Overlay를 만들 수 있습니다.
+
+Overlay를 Map으로 관리하여 여러 개의 Overlay를 만들고 관리할 수 있다.
+
+>Promise와 함께 사용할 수 있습니다.
 
 ## 사용법 살펴보기
 ### isOpen
@@ -28,8 +39,7 @@ const mount = useCallback((id: string, element: ReactNode) => {
 }, []);
 ```
 overlayById 상태를 선언, 여러개의 오버레이를 띄울 수 있도록 Map 객체를 사용
-### 왜 Map을 사용했는가?
-##### 객체를 사용하지 않고 Map을 사용한 이유?
+### 왜 Map을 사용했는지? (객체도 있는데)
 1. 객체는 순서를 보장하지 않는다. Map은 순서 보장이 된다. Overlay가 나중에 렌더링 될수록 위쪽에 떠야한다.(쌓임 맥락에 따라 나중에 추가된 Overlay가 더 위로 보여진다.)
 2. 
 ##### new Map(oldMap)을 호출하면 어떻게 동작하는가?
