@@ -11,3 +11,9 @@ open을 호출했을 때 isOpen이 true로 바뀐다. 이 값을 이용해서 Ov
 ### exit
 이 함수를 호출하면 해당 Overlay가 unmount 된다.
 ### options
+
+## close와 exit
+close와 exit이 분리되어 있는 이유는 Overlay를 닫으면서 fade-out 애니메이션을 주고 싶을 때 close와 동시에 unmount 시켜버리면 애니메이션이 먹히기 때문이라고 설명되어 있다.
+
+
+
