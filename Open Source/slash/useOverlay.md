@@ -16,3 +16,16 @@ open을 호출했을 때 isOpen이 true로 바뀐다. 이 값을 이용해서 Ov
 close와 exit이 분리되어 있는 이유는 Overlay를 닫으면서 fade-out 애니메이션을 주고 싶을 때 close와 동시에 unmount 시켜버리면 애니메이션이 먹히기 때문이라고 설명되어 있다.
 
 ### 내부 구현체 살펴보기
+#### 1. OverlayProvider (toss/slash/packages/react/use-overlay/src/OverlayProvider.tsx)
+- mount, unmount를 Context로 프로바이더 내부 컴포넌트에서 사용할 수 있도록 구현
+- overlayById 상태를 선언, 여러개의 오버레이를 띄울 수 있도록 Map 객체를 사용
+
+```ts
+const [overlayById, setOverlayById] = useState<Map<string, ReactNode>>(new Map());
+const mount = useCallback((id: string, element: ReactNode) => {
+	setOverlayById(overlayById => { const cloned = new Map(overlayById);
+		cloned.set(id, element);
+		return cloned;
+	});
+}, []);
+```
