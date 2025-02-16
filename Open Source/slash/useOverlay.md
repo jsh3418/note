@@ -67,9 +67,9 @@ console.log('dialog closed');
 >useOverlay를 호출한 컴포넌트가 unmount 되면 overlay도 같이 unmount(=exit) 됩니다.  
 exitOnUnmount의 값을 false로 설정하였다면 useOverlay를 호출한 컴포넌트가 unmount 되어도 overlay가 같이 unmount 되지 않습니다.  
 따라서 원하는 타이밍에 overlay의 exit 함수를 직접 실행하여 overlay를 unmount 시킬 수 있습니다. exit 함수를 실행시키지 않는다면  
-등록된 overlay가 메모리 상에 계속 남아있게 됩니다. exitOnUnmount의 값을 false로 설정하였다면 반드시 exit 함수를 실행시켜주세요.  
-close와 exit이 분리되어 있는 이유는 Overlay를 닫으면서 fade-out 애니메이션을 주고 싶을 때 close와 동시에 unmount시켜버리면 애니메이션이 먹히기 때문입니다.  
-default: true
+등록된 overlay가 메모리 상에 계속 남아있게 됩니다. exitOnUnmount의 값을 false로 설정하였다면 반드시 exit 함수를 실행시켜주세요.
+
+보통의 경우 오버레이를 부른 화면이 언마운트 되면 오버레이도 같이 언마운트 되는 것이 일반적이라서 기본 값을 true로 설정한 것이라고 생각함
 
 ## 내부 구현체 살펴보기
 toss/slash/packages/react/use-overlay
@@ -77,8 +77,27 @@ toss/slash/packages/react/use-overlay
 ```ts
 let elementId = 1;
 ```
-elementId: Overlay를 관리하는 Map에 key로 사용된다. 오버레이가 새로 생길 때마다 elementId의 값이 증가 된다.
+#### elementId
+Overlay를 관리하는 Map에 key로 사용된다. 오버레이가 새로 생길 때마다 elementId의 값이 증가된다.
 
+
+```ts
+interface Options {
+	exitOnUnmount?: boolean;
+}
+
+export function useOverlay({ exitOnUnmount = true }: Options = {}) {
+	...
+	useEffect(() => {
+		return () => {
+			if (exitOnUnmount) {
+				unmount(id);
+			}
+		};
+	}, [exitOnUnmount, id, unmount]);
+	...
+```
+#### exitOnUnmount
 
 
 ### 2. OverlayProvider
