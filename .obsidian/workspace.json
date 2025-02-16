@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "704ee0c09296a66a",
+        "id": "036724389a92aa7f",
         "type": "tabs",
         "children": [
           {
-            "id": "cd0b9bd154584b78",
+            "id": "0c398eedc8ec076f",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Open Source/slash/useOverlay.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "useOverlay"
+              "title": "New tab"
             }
           }
         ]
@@ -94,7 +90,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Open Source/slash/useOverlay.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +99,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for useOverlay"
+              "title": "Backlinks"
             }
           },
           {
@@ -113,12 +108,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Open Source/slash/useOverlay.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from useOverlay"
+              "title": "Outgoing links"
             }
           },
           {
@@ -142,16 +136,26 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Open Source/slash/useOverlay.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of useOverlay"
+              "title": "Outline"
+            }
+          },
+          {
+            "id": "f9cdbfba5e9a2d35",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -169,10 +173,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "cd0b9bd154584b78",
+  "active": "0c398eedc8ec076f",
   "lastOpenFiles": [
-    "JavaScript/Map/Map.md",
     "Open Source/slash/useOverlay.md",
+    "JavaScript/Map/Map.md",
     "Open Source/slash",
     "Open Source",
     "JavaScript/Map/Map의 탄생 배경.md",
