@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "036724389a92aa7f",
+        "id": "b46bbc44412ecc5c",
         "type": "tabs",
         "children": [
           {
-            "id": "0c398eedc8ec076f",
+            "id": "9c8211f0c3e4feb7",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Open Source/slash/useOverlay.md",
-                "mode": "preview",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "useOverlay"
+              "title": "새 탭"
             }
           }
         ]
@@ -164,8 +160,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -178,7 +173,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "0c398eedc8ec076f",
+  "active": "9c8211f0c3e4feb7",
   "lastOpenFiles": [
     "Open Source/slash/useOverlay.md",
     "JavaScript/Map.md",
