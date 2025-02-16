@@ -27,3 +27,12 @@ const mount = useCallback((id: string, element: ReactNode) => {
 	});
 }, []);
 ```
+overlayById 상태를 선언, 여러개의 오버레이를 띄울 수 있도록 Map 객체를 사용
+
+##### 객체를 사용하지 않고 Map을 사용한 이유?
+1. Map은 순서 보장이 된다. 객체는 순서를 보장하지 않는다. Overlay가 나중에 렌더링 될수록 위쪽에 떠야한다.
+2. 
+##### new Map(oldMap)을 호출하면 어떻게 동작하는가?
+기존 Map의 모든 데이터를 새로운 Map 인스턴스로 복사한다.
+##### 왜 이렇게 사용했는지?
+React의 useState에서 Map을 직접 수정하면 상태 변경이 감지되지 않는다.(리렌더링이 되지 않음)
