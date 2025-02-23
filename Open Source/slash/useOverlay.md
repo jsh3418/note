@@ -129,4 +129,4 @@ React의 useState에서 Map을 직접 수정하면 상태 변경이 감지되지
 2. OverlayElement를 받아 isOpen, close, exit를 주입
 
 ## 나의 생각
-isOpen과 close는 렌더링에 직접 관여하지 않고 애니메이션을 위한 값으로 생각된다. open 함수로 컴포넌트를 넣었을 때 elementId를 증가시켜 아이디로 사용하고 이를 OverlayProvider에서 렌더링하고 있기 때문
+isOpen과 close는 렌더링에 직접 관여하지 않고 애니메이션을 위한 값이다. open 함수로 컴포넌트를 넣었을 때 elementId를 증가시켜 아이디로 사용하고 이를 OverlayProvider에서 렌더링하고 있기 때문
